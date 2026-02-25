@@ -5,7 +5,7 @@
 <title>Pio Pio ❤️🐥</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
 body{background:black;overflow:hidden;color:white;}
 
 #intro{
@@ -25,28 +25,29 @@ transition:2s;
 #intro h1{
 font-size:2.5em;
 letter-spacing:3px;
-animation:fadeIn 3s infinite alternate;
+animation:latido 1.5s infinite;
 }
 
-@keyframes fadeIn{
-from{opacity:0.4}
-to{opacity:1}
+@keyframes latido{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
 }
 
 #contenido{display:none;position:relative;height:100vh;width:100%;}
 
 canvas{position:absolute;top:0;left:0;z-index:-1;}
 
-.escena{
+.texto{
 position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-font-size:2em;
+width:85%;
 text-align:center;
+font-size:2em;
 opacity:0;
-transition:2s;
-width:80%;
+transition:1.5s;
 }
 
 .nombre{
@@ -68,33 +69,14 @@ animation:brillo 3s infinite linear;
 position:absolute;
 top:50%;
 left:50%;
-transform:translate(-50%,-50%);
+transform:translate(-50%,-50%) scale(0.8);
 width:280px;
 height:380px;
 background:url('pio.jpg') center/cover;
 border-radius:20px;
-box-shadow:0 0 60px rgba(255,255,255,0.4);
+box-shadow:0 0 70px rgba(255,255,255,0.4);
 opacity:0;
 transition:2s;
-}
-
-.carta{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%) scale(0);
-background:white;
-color:black;
-padding:30px;
-border-radius:20px;
-width:350px;
-text-align:center;
-animation:abrir 2s forwards;
-display:none;
-}
-
-@keyframes abrir{
-to{transform:translate(-50%,-50%) scale(1);}
 }
 
 #contador{
@@ -102,70 +84,80 @@ position:absolute;
 bottom:20px;
 width:100%;
 text-align:center;
-opacity:0.7;
+opacity:0.6;
 font-size:1em;
 }
 
 .pollito{
 position:absolute;
-font-size:22px;
+font-size:20px;
 animation:flotar 6s infinite ease-in-out;
 }
 
 @keyframes flotar{
 0%{transform:translateY(0)}
-50%{transform:translateY(-25px)}
+50%{transform:translateY(-20px)}
 100%{transform:translateY(0)}
 }
 
-iframe{display:none;}
+iframe{
+position:absolute;
+width:0;
+height:0;
+border:0;
+}
 </style>
 </head>
 
 <body>
 
 <div id="intro" onclick="iniciar()">
-<h1>Toca para comenzar la película 🖤</h1>
-<p>Para Pio Pio ❤️🐥</p>
+<h1>Toca para entrar 🖤</h1>
+<p>Una historia para Pio Pio ❤️🐥</p>
 </div>
 
 <div id="contenido">
 
 <canvas id="estrellas"></canvas>
 
-<div class="escena" id="e1">Desde el 6 de enero de 2026…</div>
+<div class="texto" id="t1">Desde el 6 de enero de 2026…</div>
 
-<div class="escena nombre" id="e2">Pio Pio ❤️🐥</div>
+<div class="texto nombre" id="t2">Pio Pio ❤️🐥</div>
 
-<div class="escena" id="e3">Conocí a un hombre trabajador… demasiado trabajador.</div>
+<div class="texto" id="t3">Entraste a mi vida sin avisar…</div>
 
-<div class="escena" id="e4">Inteligente. Guapo. Súper guapo.</div>
+<div class="texto" id="t4">Y resultaste ser un HOMBRE TRABAJADOR… demasiado trabajador.</div>
 
-<div class="escena" id="e5">Una obra de arte. Único. Inigualable.</div>
+<div class="texto" id="t5">Inteligente. Guapo. Súper guapo. Súper bonito.</div>
 
-<div class="escena" id="e6">Me encanta tu risa… tu voz… tus ojos.</div>
+<div class="texto" id="t6">Chulo. Precioso. Hermoso.</div>
 
-<div class="escena" id="e7">Me encanta cómo te ves con casco 🏍️</div>
+<div class="texto" id="t7">Una obra de arte. Único. Perfecto. Inigualable.</div>
 
-<div class="escena" id="e8">No eres una opción. Eres mi prioridad.</div>
+<div class="texto" id="t8">Me encanta cuando te emocionas.</div>
+
+<div class="texto" id="t9">Tus ojos… tu risa… tu voz… tu todo.</div>
+
+<div class="texto" id="t10">Me encanta cómo te ves con casco 🏍️</div>
+
+<div class="texto" id="t11">Que te gusten las motos… que juegues fútbol…</div>
+
+<div class="texto" id="t12">Pero más me gusta tu manera de ser y de expresarte.</div>
+
+<div class="texto" id="t13">No eres una opción.</div>
+
+<div class="texto" id="t14">Eres mi prioridad.</div>
 
 <div class="foto" id="foto"></div>
 
-<div class="carta" id="carta">
-Pio Pio ❤️🐥<br><br>
-Siempre debes considerarte especial.<br>
-Porque lo eres.<br><br>
-Te amo.<br>
-I love you.<br>
-Je t’aime.<br>
-Ti amo.<br>
-Ich liebe dich.
-</div>
+<div class="texto" id="final">Siempre debes considerarte especial… porque lo eres 🖤</div>
 
 <div id="contador"></div>
 
-<iframe id="musica"
-src="https://www.youtube.com/embed/WBvMmwTLmD8?autoplay=1&loop=1&playlist=WBvMmwTLmD8">
+<iframe
+id="musica"
+src="https://www.youtube.com/embed/WBvMmwTLmD8?enablejsapi=1&autoplay=1&loop=1&playlist=WBvMmwTLmD8&controls=0&modestbranding=1"
+allow="autoplay">
 </iframe>
 
 </div>
@@ -177,26 +169,21 @@ document.getElementById("intro").style.opacity="0";
 setTimeout(()=>{
 document.getElementById("intro").style.display="none";
 document.getElementById("contenido").style.display="block";
-document.getElementById("musica").style.display="block";
-mostrarEscenas();
+mostrar();
 },2000);
 }
 
-let escenas=document.querySelectorAll(".escena");
+let escenas=document.querySelectorAll(".texto");
 let i=0;
 
-function mostrarEscenas(){
+function mostrar(){
 if(i>0){escenas[i-1].style.opacity=0;}
 if(i<escenas.length){
 escenas[i].style.opacity=1;
 i++;
-setTimeout(mostrarEscenas,5000);
+setTimeout(mostrar,4500);
 }else{
 document.getElementById("foto").style.opacity=1;
-setTimeout(()=>{
-document.getElementById("foto").style.opacity=0;
-document.getElementById("carta").style.display="block";
-},5000);
 }
 }
 
@@ -210,7 +197,7 @@ document.getElementById("contador").innerHTML=
 contador();
 setInterval(contador,86400000);
 
-for(let p=0;p<10;p++){
+for(let p=0;p<12;p++){
 let pollito=document.createElement("div");
 pollito.className="pollito";
 pollito.innerHTML="🐥";
@@ -225,7 +212,7 @@ canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
 let estrellas=[];
-for(let s=0;s<200;s++){
+for(let s=0;s<250;s++){
 estrellas.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
