@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pio Pio ❤️🐥</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', sans-serif;}
+body{background:black;overflow:hidden;color:white;}
+
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+cursor:pointer;
+z-index:10;
+transition:2s;
+}
+
+#intro h1{
+font-size:2.5em;
+letter-spacing:3px;
+animation:fadeIn 3s infinite alternate;
+}
+
+@keyframes fadeIn{
+from{opacity:0.4}
+to{opacity:1}
+}
+
+#contenido{display:none;position:relative;height:100vh;width:100%;}
+
+canvas{position:absolute;top:0;left:0;z-index:-1;}
+
+.escena{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:2em;
+text-align:center;
+opacity:0;
+transition:2s;
+width:80%;
+}
+
+.nombre{
+font-size:3em;
+font-weight:bold;
+background:linear-gradient(90deg,#fff,#aaa,#fff);
+background-size:200%;
+-webkit-background-clip:text;
+color:transparent;
+animation:brillo 3s infinite linear;
+}
+
+@keyframes brillo{
+0%{background-position:0%}
+100%{background-position:200%}
+}
+
+.foto{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:280px;
+height:380px;
+background:url('pio.jpg') center/cover;
+border-radius:20px;
+box-shadow:0 0 60px rgba(255,255,255,0.4);
+opacity:0;
+transition:2s;
+}
+
+.carta{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+background:white;
+color:black;
+padding:30px;
+border-radius:20px;
+width:350px;
+text-align:center;
+animation:abrir 2s forwards;
+display:none;
+}
+
+@keyframes abrir{
+to{transform:translate(-50%,-50%) scale(1);}
+}
+
+#contador{
+position:absolute;
+bottom:20px;
+width:100%;
+text-align:center;
+opacity:0.7;
+font-size:1em;
+}
+
+.pollito{
+position:absolute;
+font-size:22px;
+animation:flotar 6s infinite ease-in-out;
+}
+
+@keyframes flotar{
+0%{transform:translateY(0)}
+50%{transform:translateY(-25px)}
+100%{transform:translateY(0)}
+}
+
+iframe{display:none;}
+</style>
+</head>
+
+<body>
+
+<div id="intro" onclick="iniciar()">
+<h1>Toca para comenzar la película 🖤</h1>
+<p>Para Pio Pio ❤️🐥</p>
+</div>
+
+<div id="contenido">
+
+<canvas id="estrellas"></canvas>
+
+<div class="escena" id="e1">Desde el 6 de enero de 2026…</div>
+
+<div class="escena nombre" id="e2">Pio Pio ❤️🐥</div>
+
+<div class="escena" id="e3">Conocí a un hombre trabajador… demasiado trabajador.</div>
+
+<div class="escena" id="e4">Inteligente. Guapo. Súper guapo.</div>
+
+<div class="escena" id="e5">Una obra de arte. Único. Inigualable.</div>
+
+<div class="escena" id="e6">Me encanta tu risa… tu voz… tus ojos.</div>
+
+<div class="escena" id="e7">Me encanta cómo te ves con casco 🏍️</div>
+
+<div class="escena" id="e8">No eres una opción. Eres mi prioridad.</div>
+
+<div class="foto" id="foto"></div>
+
+<div class="carta" id="carta">
+Pio Pio ❤️🐥<br><br>
+Siempre debes considerarte especial.<br>
+Porque lo eres.<br><br>
+Te amo.<br>
+I love you.<br>
+Je t’aime.<br>
+Ti amo.<br>
+Ich liebe dich.
+</div>
+
+<div id="contador"></div>
+
+<iframe id="musica"
+src="https://www.youtube.com/embed/WBvMmwTLmD8?autoplay=1&loop=1&playlist=WBvMmwTLmD8">
+</iframe>
+
+</div>
+
+<script>
+
+function iniciar(){
+document.getElementById("intro").style.opacity="0";
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+document.getElementById("contenido").style.display="block";
+document.getElementById("musica").style.display="block";
+mostrarEscenas();
+},2000);
+}
+
+let escenas=document.querySelectorAll(".escena");
+let i=0;
+
+function mostrarEscenas(){
+if(i>0){escenas[i-1].style.opacity=0;}
+if(i<escenas.length){
+escenas[i].style.opacity=1;
+i++;
+setTimeout(mostrarEscenas,5000);
+}else{
+document.getElementById("foto").style.opacity=1;
+setTimeout(()=>{
+document.getElementById("foto").style.opacity=0;
+document.getElementById("carta").style.display="block";
+},5000);
+}
+}
+
+function contador(){
+let inicio=new Date("2026-01-06");
+let hoy=new Date();
+let dias=Math.floor((hoy-inicio)/(1000*60*60*24));
+document.getElementById("contador").innerHTML=
+"Han pasado "+dias+" días desde que comenzó nuestra historia 🖤";
+}
+contador();
+setInterval(contador,86400000);
+
+for(let p=0;p<10;p++){
+let pollito=document.createElement("div");
+pollito.className="pollito";
+pollito.innerHTML="🐥";
+pollito.style.left=Math.random()*100+"%";
+pollito.style.top=Math.random()*100+"%";
+document.body.appendChild(pollito);
+}
+
+let canvas=document.getElementById("estrellas");
+let ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let estrellas=[];
+for(let s=0;s<200;s++){
+estrellas.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*1.5
+});
+}
+
+function animar(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+estrellas.forEach(e=>{
+ctx.beginPath();
+ctx.arc(e.x,e.y,e.r,0,Math.PI*2);
+ctx.fill();
+});
+requestAnimationFrame(animar);
+}
+animar();
+
+</script>
+
+</body>
+</html>
